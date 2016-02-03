@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name jlokiaJsMonitorApp.controller:AboutCtrl
+ * @name jolokiaJsMonitorApp.controller:AboutCtrl
  * @description
  * # AboutCtrl
- * Controller of the jlokiaJsMonitorApp
+ * Controller of the jolokiaJsMonitorApp
  */
-angular.module('jlokiaJsMonitorApp')
+angular.module('jolokiaJsMonitorApp')
   .controller('AboutCtrl', function () {
     this.awesomeThings = [
       'HTML5 Boilerplate',

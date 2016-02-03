@@ -9,14 +9,15 @@
  * Main module of the application.
  */
 angular
-  .module('jlokiaJsMonitorApp', [
+  .module('jolokiaJsMonitorApp', [
     'ngAnimate',
     'ngCookies',
     'ngMessages',
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'chart.js'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -29,6 +30,11 @@ angular
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl',
         controllerAs: 'about'
+      })
+      .when('/mainDashboard', {
+        templateUrl: 'views/maindashboard.html',
+        controller: 'MaindashboardCtrl',
+        controllerAs: 'mainDashboard'
       })
       .otherwise({
         redirectTo: '/'
