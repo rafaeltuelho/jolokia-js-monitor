@@ -26,6 +26,26 @@ angular.module('jolokiaJsMonitorApp')
 
       $scope.status;
       $scope.labels = ["Initial", "Max", "Used", "Commited"];
+
+      handle = j4p.register(function(heapUsage, threading) {
+         //console.log("HeapMemory: " + heapUsage.value.used);
+         //console.log("ThreadCount: " + threading.value);
+
+         $scope.$apply(function() {
+           $scope.data = [heapUsage.value.init, heapUsage.value.max, heapUsage.value.used, heapUsage.value.committed];
+           $scope.currentHeapUsage = heapUsage.value.used;
+
+           console.log($scope.data);
+           console.log($scope.currentHeapUsage);
+        });
+       },
+       { type: "READ", mbean: "java.lang:type=Memory", attribute: "HeapMemoryUsage"},
+       { type: "READ", mbean: "java.lang:type=Threading", attribute: "ThreadCount"});
+
+      j4p.start(30000);
+
+      console.log('jolokia handler started!!!');
+
       getHeapMemoryUsage();
 
       function getHeapMemoryUsage() {
@@ -33,23 +53,7 @@ angular.module('jolokiaJsMonitorApp')
         // Request the memory information asynchronously and print it on
         // the console
         /**/
-        handle = j4p.register(function(heapUsage, threading) {
-           //console.log("HeapMemory: " + heapUsage.value.used);
-           //console.log("ThreadCount: " + threading.value);
 
-           $scope.data = [heapUsage.value.init, heapUsage.value.max, heapUsage.value.used, heapUsage.value.committed];
-           $scope.currentHeapUsage = heapUsage.value.used;
-
-           console.log($scope.data);
-           console.log($scope.currentHeapUsage);
-
-         },
-         { type: "READ", mbean: "java.lang:type=Memory", attribute: "HeapMemoryUsage"},
-         { type: "READ", mbean: "java.lang:type=Threading", attribute: "ThreadCount"});
-
-        j4p.start(10000);
-
-        console.log('jolokia handler started!!!');
         /**/
         /*
         j4p.request(
