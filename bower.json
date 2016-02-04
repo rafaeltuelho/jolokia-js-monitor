@@ -13,7 +13,9 @@
     "angular-touch": "^1.4.0",
     "JSON-js": "*",
     "jolokia": "~1.0.7",
-    "angular-chart.js": "~0.8.8"
+    "angular-chart.js": "~0.8.8",
+    "cubism": "~1.6.0",
+    "d3": "~3.5.14"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0"
